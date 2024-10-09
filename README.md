@@ -16,9 +16,12 @@ Automated Infra
 (using Jenkins and ArgoCD, this MERN Stack Application will be deployed on
 EKS Cluster)
 
-- On an Ec2 instance, we will install Jenkins and Terraform. Using Jenkins we will runs terraform scripts which will create private VPC on AWS. 
+- On an Ec2 instance, we will install Jenkins and Terraform. Using Jenkins 
+we will runs terraform scripts which will create private VPC on AWS. 
 
-- Within VPC, an EKS Cluster will be created which will have 2 nodes(Worker Node 1 and Worker Node2)and a Jump server to connect to EKS Cluster to perform an Administrative activities on cluster. 
+- Within VPC, an EKS Cluster will be created which will have 2 nodes(Worker 
+Node1 and Worker Node2)and a Jump server to connect to EKS Cluster 
+to perform any Administrative activities on cluster. 
 - Only Jump server will have access to EKS Cluster and no-one else.
 
 
