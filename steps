@@ -1,0 +1,40 @@
+create ec2 jenkins-server
+ubuntu 2022.
+t2.xlarge
+no key-pair instead using SSM
+-default VPC, SG should have ports open to Jenkins port 8080 and Sonarqube server. 
+-storage gp2 - 30 GB
+-IAM instance profile - admin access AA-Access lot of things like ECR , 
+S3 etc.
+-disabled SSh access, instead of connecting to machine using PuTTy, AWS UI 
+is used using SSM. 
+coz, .pem file cannot be provided to everyone. 
+
+-User-data script - instead of login to jenkins-server , whenevr the instance
+is created the script will run and install jenkins ,docker,terraform, 
+AWS CLI,using container for Sonarqube instead of directly installing it.
+Also install Trivy for image-scanning. 
+
+why this is preferred instead of installing each package manually?
+- we have disabled SSH access so that nobody can access instance and needed 
+is put in user-data. 
+
+- check the installation process - htop ( current commands running) 
+ 
+- jenkins user created - other than admin 
+install plugins - 
+> to run terraform scripts through Jenkins , install plugins manually. 
+1.AWS credentials - store credentials only in AWS site.
+2. pipeline- works with AWS API
+3. terraform
+4. Stage view ( to visualize the pipeline build)
+- store few credentials in jenkins credentials. 
+- id created will be used in jenkins pipeline to fetch the credentials. 
+- for access key and secret access key, install IAM user, granted admin access to this IAM user. (max 2 is limit)
+- configure terraform . tools > system
+
+we are using a single jenkins node architecture , where we are using jenkins
+as master and also as agent.
+
+- writing pipeine 
+
